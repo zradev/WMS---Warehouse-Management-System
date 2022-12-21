@@ -41,7 +41,7 @@ const UserBubble = () => {
   }, [bubble]);
 
   return (
-    <div ref={bubble}>
+    <div ref={bubble} className="absolute right-5 md:right-[200px]">
       <button
         onClick={() => {
           setIsOpen((prev) => {

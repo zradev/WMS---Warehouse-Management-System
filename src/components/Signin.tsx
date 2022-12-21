@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useFormik } from "formik";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -17,13 +17,15 @@ const Signin = () => {
           `${process.env.REACT_APP_SERVER_URL}/user/login`,
           values
         );
-        //login(response.user);
+        localStorage.setItem("user", response.data);
         navigate("/");
       } catch (error) {
         console.log(error);
       }
     },
   });
+
+  useEffect(() => {}, []);
 
   return (
     <form

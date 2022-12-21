@@ -1,17 +1,76 @@
+@import url("https://fonts.googleapis.com/css?family=Josefin+Sans");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+html,
 body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-        sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+  font-family: "Josefin Sans", cursive;
 }
 
-code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-        monospace;
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.skeleton-bg {
+  animation: skeleton-bg 2.5s infinite;
+}
+
+.slide-in-left {
+  animation: slide-in-left 0.5s forwards;
+}
+
+.slide-out-left {
+  animation: slide-out-left 0.5s forwards;
+}
+
+.slide-in-right {
+  animation: slide-in-right 0.5s forwards;
+}
+
+.slide-out-right {
+  animation: slide-out-right 0.5s forwards;
+}
+
+@keyframes skeleton-bg {
+  0% {
+    background-color: rgb(243 244 246);
+  }
+  50% {
+    background-color: rgb(209 213 219);
+  }
+  100% {
+    background-color: rgb(243 244 246);
+  }
+}
+
+@keyframes slide-in-left {
+  100% {
+    left: 0;
+  }
+}
+
+@keyframes slide-out-left {
+  100% {
+    left: -100%;
+  }
+}
+
+@keyframes slide-in-right {
+  100% {
+    right: 0;
+  }
+}
+
+@keyframes slide-out-right {
+  100% {
+    right: -100%;
+  }
 }
