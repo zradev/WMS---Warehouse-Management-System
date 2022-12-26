@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { useFormik } from "formik";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { axiosErrorHandler } from "../utils/axiosErrorHandler";
 
 const Signup = () => {
   const navigate = useNavigate();
+  const [error, setError] = useState("");
   const formik = useFormik({
     initialValues: {
       username: "",
@@ -22,6 +24,7 @@ const Signup = () => {
         navigate("/");
       } catch (error) {
         console.log(error);
+        setError(axiosErrorHandler(error));
       }
     },
   });
@@ -32,6 +35,7 @@ const Signup = () => {
       className="flex w-full justify-center items-center my-10"
     >
       <div className="flex flex-col space-y-5 w-full sm:w-2/3 md:w-1/3 mx-5">
+        <p className="text-center text-red-600">{error}</p>
         <label htmlFor="username" className="text-start font-bold">
           Username<span className="text-red-800">*</span>
         </label>
@@ -42,18 +46,6 @@ const Signup = () => {
           required
           onChange={formik.handleChange}
           value={formik.values.username}
-          className="rounded border border-gray-600 focus:border-black"
-        />
-        <label htmlFor="password" className="text-start font-bold">
-          Password<span className="text-red-800">*</span>
-        </label>
-        <input
-          type="password"
-          name="password"
-          id="password"
-          required
-          onChange={formik.handleChange}
-          value={formik.values.password}
           className="rounded border border-gray-600 focus:border-black"
         />
         <label htmlFor="email" className="text-start font-bold">
@@ -69,7 +61,7 @@ const Signup = () => {
           className="rounded border border-gray-600 focus:border-black"
         />
         <label htmlFor="phone" className="text-start font-bold">
-          Phone
+          Phone Number
         </label>
         <input
           type="tel"
@@ -80,11 +72,30 @@ const Signup = () => {
           value={formik.values.phone}
           className="rounded border border-gray-600 focus:border-black"
         />
+        <label htmlFor="password" className="text-start font-bold">
+          Password<span className="text-red-800">*</span>
+        </label>
+        <input
+          type="password"
+          name="password"
+          id="password"
+          required
+          onChange={formik.handleChange}
+          value={formik.values.password}
+          className="rounded border border-gray-600 focus:border-black"
+        />
+        <div className="text-gray-400 mt-3">
+          <h2>Password must have:</h2>
+          <p> {"\u2022"} At least 1 upper-case and 1 lower-case letter</p>
+          <p> {"\u2022"} At least 1 number</p>
+          <p> {"\u2022"} At least 1 special symbol</p>
+          <p> {"\u2022"} Min 8 and max 50 characters</p>
+        </div>
         <div className="flex space-x-8">
           <input type="checkbox" name="checkbox" id="checkbox" required />
           <label htmlFor="checkbox" className="text-xs">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit
-            repudiandae similique quo ea consequuntur molestias ab.
+            I agree to the Warehouse Management System Lorem ipsum dolor sit
+            amet consectetur adipisicing elit.
           </label>
         </div>
         <button
