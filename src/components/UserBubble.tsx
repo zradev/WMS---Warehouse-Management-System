@@ -41,7 +41,7 @@ const UserBubble = () => {
   }, [bubble]);
 
   return (
-    <div ref={bubble} className="absolute right-5 md:right-[200px]">
+    <div ref={bubble} className="text-black absolute right-5 md:right-[200px]">
       <button
         onClick={() => {
           setIsOpen((prev) => {
@@ -56,18 +56,18 @@ const UserBubble = () => {
       <div
         className={`fixed md:absolute top-0 w-full h-full pt-[20vh] px-9 md:w-max md:static md:h-auto md:p-5 md:mt-2 bg-white ${
           isOpen
-            ? " right-[-100%] md:top-[100%] slide-in-right md:animate:none md:animate-none md:rounded-lg md:border"
+            ? " right-[-100%] md:left-[-150%] md:top-[100%] slide-in-right md:animate:none md:animate-none md:rounded-lg md:border"
             : preventAnimationOnLoad
             ? " right-[-100%] md:hidden"
-            : " right-0 slide-out-right md:hidden"
+            : " right-0  slide-out-right md:hidden"
         }`}
       >
         {isOpen && (
           <ul className="flex flex-col items-center space-y-10 md:space-y-1 md:gap-4 text-2xl md:text-xl mt-10 md:mt-0">
-            <li className="hover:text-gray-800">
+            <li className="hover:text-gray-600">
               <Link to="/profile">Edit Profile</Link>
             </li>
-            <li>
+            <li className="hover:text-gray-600">
               <button onClick={logout}>Sign out</button>
             </li>
           </ul>

@@ -1,9 +1,9 @@
-import React, { useEffect, useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Signin from "../components/Signin";
+import Signup from "../components/Signup";
 import AuthContext from "../context/AuthProvider";
 
-const Login = () => {
+const Register = () => {
   const { auth } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -14,13 +14,12 @@ const Login = () => {
       navigate("/products");
     }
   }, [auth, navigate]);
-
   return (
     <div className="p-5 mt-5">
-      <h1 className="w-full text-center text-2xl">Log in to your account</h1>
-      <Signin />
+      <h1 className="w-full text-center text-2xl">Create your account</h1>
+      <Signup />
     </div>
   );
 };
 
-export default Login;
+export default Register;

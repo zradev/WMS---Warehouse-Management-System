@@ -26,6 +26,7 @@ const Filter = ({
     sessionStorage.setItem("selectedCategory", event.target.value);
     setSelectedCategory(event.target.value);
     setCurrentPage(1);
+    window.scrollTo(0, 0);
   };
 
   return (
