@@ -15,7 +15,6 @@ const Signup = () => {
       phone: "",
     },
     onSubmit: async (values) => {
-      console.log(values);
       try {
         await axios.post(
           `${process.env.REACT_APP_SERVER_URL}/user/register`,
@@ -23,7 +22,7 @@ const Signup = () => {
         );
         navigate("/");
       } catch (error) {
-        console.log(error);
+        console.log(axiosErrorHandler(error));
         setError(axiosErrorHandler(error));
       }
     },

@@ -64,10 +64,16 @@ const UserBubble = () => {
       >
         {isOpen && (
           <ul className="flex flex-col items-center space-y-10 md:space-y-1 md:gap-4 text-2xl md:text-xl mt-10 md:mt-0">
-            <li className="hover:text-gray-600">
+            <li
+              className="hover:text-gray-600"
+              onClick={() => setIsOpen(false)}
+            >
               <Link to="/profile">Edit Profile</Link>
             </li>
-            <li className="hover:text-gray-600">
+            <li
+              className="hover:text-gray-600"
+              onClick={() => setIsOpen(false)}
+            >
               <button onClick={logout}>Sign out</button>
             </li>
           </ul>
