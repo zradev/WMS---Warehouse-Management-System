@@ -6,7 +6,7 @@ import SearchBar from "./SearchBar";
 import { FaFilter } from "react-icons/fa";
 import { BsPlus } from "react-icons/bs";
 import Pagination from "./Pagination";
-import { IProduct } from "../../types";
+import { IProduct } from "../utils/interfaces";
 import axios from "axios";
 import ProductSkeleton from "./ProductSkeleton";
 import NoResults from "./NoResults";
@@ -29,7 +29,7 @@ const Catalogue = () => {
 
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_SERVER_URL}/products/get-all`)
+      .get(`${process.env.REACT_APP_SERVER_URL}/product/get-all`)
       .then((res) => {
         setProductsData(res.data);
       })
@@ -84,7 +84,7 @@ const Catalogue = () => {
         </button>
         <SearchBar setSearchParam={setSearchParam} />
         <Link to="/add">
-          <button className="bg-stone-700 text-white font-semibold py-3 md:py-2 px-3 rounded-full">
+          <button className="bg-stone-700 hover:bg-stone-600 text-white py-3 md:py-2 px-3 rounded-full">
             <BsPlus className="md:hidden" />
             <span className="hidden md:inline"> New Product</span>
           </button>

@@ -41,7 +41,10 @@ const UserBubble = () => {
   }, [bubble]);
 
   return (
-    <div ref={bubble} className="text-black absolute right-5 md:right-[200px]">
+    <div
+      ref={bubble}
+      className="text-black absolute right-5 md:right-[100px] lg:right-[200px]"
+    >
       <button
         onClick={() => {
           setIsOpen((prev) => {
@@ -49,7 +52,7 @@ const UserBubble = () => {
             return !prev;
           });
         }}
-        className={`flex items-center justify-center relative bg-gray-200 z-50 w-9 h-9 m-auto text-xl rounded-full hover:border`}
+        className={`flex items-center justify-center relative bg-gray-200 z-50 w-10 h-10 m-auto text-xl rounded-full hover:border`}
       >
         <p className="w-min h-min">{user?.username[0].toLocaleUpperCase()}</p>
       </button>

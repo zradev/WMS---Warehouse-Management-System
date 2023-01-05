@@ -8,6 +8,7 @@ import Register from "./pages/Register";
 import AuthRoute from "./utils/AuthRoute";
 import Products from "./pages/Products";
 import Profile from "./pages/Profile";
+import ProductPage from "./pages/ProductPage";
 
 function App() {
   return (
@@ -22,6 +23,10 @@ function App() {
             element={<AuthRoute component={Products} />}
           />
           <Route path="/profile" element={<AuthRoute component={Profile} />} />
+          <Route
+            path="/products/:id"
+            element={<AuthRoute component={ProductPage} />}
+          />
           <Route path="/*" element={<AuthRoute component={Products} />} />
         </Routes>
         <div className="w-full bg-stone-900 h-10 mt-auto"></div>

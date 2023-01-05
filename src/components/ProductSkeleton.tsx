@@ -1,15 +1,8 @@
 import React from "react";
 
-interface IProps {
-  key: number;
-}
-
-const ProductSkeleton = ({ key }: IProps) => {
+const ProductSkeleton = () => {
   return (
-    <div
-      key={key}
-      className="w-full bg-white p-4 border border-gray-300 border-b-gray-500"
-    >
+    <div className="w-full bg-white p-4 border border-gray-300 border-b-gray-500">
       <div className="flex flex-col ">
         <div className="capitalize ">
           <div className="w-full h-6 mb-4 skeleton-bg "></div>

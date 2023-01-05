@@ -8,7 +8,7 @@ const Filter = ({
   setCurrentPage,
 }: any) => {
   const filter = useRef<any>(null);
-  const categories = ["Foods", "Stationery", "Building Supplies"];
+  const categories = ["Food", "Stationery", "Building Supplies"];
 
   useEffect(() => {
     function handleClickOutside(event: any) {
@@ -43,11 +43,11 @@ const Filter = ({
       <div className="flex items-center ml-5 w-max">
         <input
           id="default-radio-all"
-          checked={selectedCategory === "All"}
+          defaultChecked={selectedCategory === "All"}
           type="radio"
           value="All"
           name="default-radio"
-          className="outline-none border-none w-4 h-4 text-blue-600 bg-gray-100 border-gray-300"
+          className="outline-none border-none w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 accent-stone-700"
         />
         <label
           htmlFor="default-radio-all"
@@ -60,11 +60,11 @@ const Filter = ({
         <div key={index} className="flex items-center ml-5 w-max">
           <input
             id={`default-radio-${index}`}
-            checked={selectedCategory === category}
+            defaultChecked={selectedCategory === category}
             type="radio"
             value={category}
             name="default-radio"
-            className="outline-none border-none w-4 h-4 text-blue-600 bg-gray-100 border-gray-300"
+            className="outline-none border-none w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 accent-stone-700"
           />
           <label
             htmlFor={`default-radio-${index}`}

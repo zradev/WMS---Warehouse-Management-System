@@ -40,7 +40,7 @@ const Signin = () => {
     >
       <div className="flex flex-col space-y-5 w-full sm:w-2/3 md:w-1/3 mx-5">
         <p className="text-center text-red-600">{error}</p>
-        <label htmlFor="username" className="text-start font-bold">
+        <label htmlFor="username" className="text-start text-lg">
           Username<span className="text-red-800">*</span>
         </label>
         <input
@@ -50,9 +50,9 @@ const Signin = () => {
           required
           onChange={formik.handleChange}
           value={formik.values.username}
-          className="rounded border border-gray-600 focus:border-black"
+          className="rounded border border-gray-600 focus:border-black px-1"
         />
-        <label htmlFor="password" className="text-start font-bold">
+        <label htmlFor="password" className="text-start text-lg">
           Password<span className="text-red-800">*</span>
         </label>
         <input
@@ -62,14 +62,14 @@ const Signin = () => {
           required
           onChange={formik.handleChange}
           value={formik.values.password}
-          className="rounded border border-gray-600 focus:border-black"
+          className="rounded border border-gray-600 focus:border-black px-1"
         />
         <Link to="/reset" className="text-end hover:text-blue-600">
           Forgot Password?
         </Link>
         <button
           type="submit"
-          className="w-fit self-center p-1 px-6 rounded-lg  border border-black hover:bg-gray-100 font-bold"
+          className="bg-stone-700 text-xl text-white py-3 md:py-2 px-3 rounded-full"
         >
           Login
         </button>

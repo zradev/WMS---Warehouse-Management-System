@@ -32,7 +32,7 @@ const Pagination = ({
             key={index}
             onClick={() => handlePageClick(page)}
             className={`w-8 h-8 ${
-              page === currentPage && "border text-blue-600"
+              page === currentPage && "border-b-2 border-black text-stone-700"
             }`}
           >
             {page}

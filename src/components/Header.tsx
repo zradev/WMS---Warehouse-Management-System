@@ -8,7 +8,10 @@ const Header = () => {
 
   return (
     <header className="select-none flex shadow-sm p-3 items-center justify-between md:px-[200px] py-6 w-full bg-stone-900 text-white">
-      <Link to="/products" className="self-center m-auto text-2xl font-bold">
+      <Link
+        to="/products"
+        className="self-center m-auto text-2xl font-bold hover:text-gray-300"
+      >
         <h1>
           WMS <span className="hidden md:inline"> - WAREHOUSE MANAGEMENT</span>
         </h1>

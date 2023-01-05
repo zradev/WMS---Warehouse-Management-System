@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { formatCurrency } from "../utils/formatCurrency";
-import { IProduct } from "../../types.d";
+import { IProduct } from "../utils/interfaces";
 
 interface IProps {
   product: IProduct;
@@ -10,20 +10,20 @@ interface IProps {
 const Product = ({ product }: IProps) => {
   return (
     <Link
-      to={`product/${product._id}`}
+      to={`/products/${product._id}`}
       key={product._id}
-      className="w-full bg-white p-4 border border-gray-300 border-b-gray-500"
+      className="w-full bg-white p-4 border border-gray-300 border-b-gray-500 rounded"
     >
-      <div className="flex flex-col ">
+      <div className="flex flex-col">
         <div className="capitalize ">
           <h1 className="text-xl font-bold mb-3">{product.name}</h1>
-          <h2 className="text-md mb-2 ml-3">{product.category}</h2>
+          <h2 className="text-md mb-2 ml-3">Quantity: {product.quantity}</h2>
         </div>
         <div className="flex self-center w-[25vh] h-[25vh] md:w-[15vw] md:h-[15vw]">
           <img
             src={product.images[0]}
             alt="car"
-            className="w-auto h-auto object-contain"
+            className="w-auto h-auto object-contain rounded"
           />
         </div>
         <div className="flex justify-around mt-3">
@@ -36,7 +36,7 @@ const Product = ({ product }: IProps) => {
           <div>
             <h1>Sell Price</h1>
             <h1 className="text-xl font-bold">
-              {formatCurrency(product.buyingPrice)}
+              {formatCurrency(product.sellingPrice)}
             </h1>
           </div>
         </div>
