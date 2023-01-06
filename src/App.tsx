@@ -9,6 +9,7 @@ import AuthRoute from "./utils/AuthRoute";
 import Products from "./pages/Products";
 import Profile from "./pages/Profile";
 import ProductPage from "./pages/ProductPage";
+import NewProduct from "./pages/NewProduct";
 
 function App() {
   return (
@@ -23,6 +24,10 @@ function App() {
             element={<AuthRoute component={Products} />}
           />
           <Route path="/profile" element={<AuthRoute component={Profile} />} />
+          <Route
+            path="/new-product"
+            element={<AuthRoute component={NewProduct} />}
+          />
           <Route
             path="/products/:id"
             element={<AuthRoute component={ProductPage} />}

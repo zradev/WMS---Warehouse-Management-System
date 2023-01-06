@@ -83,7 +83,7 @@ const Catalogue = () => {
           <FaFilter className="text-white w-4 h-4" />
         </button>
         <SearchBar setSearchParam={setSearchParam} />
-        <Link to="/add">
+        <Link to="/new-product">
           <button className="bg-stone-700 hover:bg-stone-600 text-white py-3 md:py-2 px-3 rounded-full">
             <BsPlus className="md:hidden" />
             <span className="hidden md:inline"> New Product</span>
