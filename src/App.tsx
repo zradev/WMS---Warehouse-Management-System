@@ -12,6 +12,7 @@ import ProductPage from "./pages/ProductPage";
 import NewProduct from "./pages/NewProduct";
 import EditProduct from "./pages/EditProduct";
 import useScrollToTop from "./hooks/useScrollToTop";
+import Footer from "./components/Footer";
 
 function App() {
   useScrollToTop();
@@ -41,7 +42,7 @@ function App() {
           />
           <Route path="/*" element={<AuthRoute component={Products} />} />
         </Routes>
-        <div className="w-full bg-stone-900 h-10 mt-auto"></div>
+        <Footer />
       </AuthProvider>
     </div>
   );

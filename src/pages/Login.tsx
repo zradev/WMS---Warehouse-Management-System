@@ -16,9 +16,13 @@ const Login = () => {
   }, [auth, navigate]);
 
   return (
-    <div className="p-5 mt-5">
-      <h1 className="w-full text-center text-2xl">Log in to your account</h1>
+    <div className="p-5 mt-5 text-center">
+      <h1 className="w-full text-2xl">Log in to your account</h1>
       <Signin />
+      <p>If you want to skip registration use:</p>
+      <p>Username: test</p>
+      <p>Password: @Test123</p>
+      <p>NOTE: This is for testing purposes</p>
     </div>
   );
 };

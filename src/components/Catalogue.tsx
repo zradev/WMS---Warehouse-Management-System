@@ -63,7 +63,17 @@ const Catalogue = () => {
 
   useEffect(() => {
     if (selectedCategory === "All" && selectedSupplier === "All") {
-      setProducts(productsData);
+      setProducts(() =>
+        productsData.filter(
+          (product) =>
+            product._id
+              .toLocaleLowerCase()
+              .includes(searchParam.toLocaleLowerCase()) ||
+            product.name
+              .toLocaleLowerCase()
+              .includes(searchParam.toLocaleLowerCase())
+        )
+      );
     } else if (selectedCategory !== "All" && selectedSupplier === "All") {
       setProducts(() =>
         productsData
