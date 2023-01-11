@@ -8,12 +8,12 @@ const Header = () => {
   const { auth } = useContext(AuthContext);
 
   return (
-    <header className="relative select-none flex shadow-sm p-3 items-center justify-between md:px-[200px] py-4 w-full bg-stone-900 text-white z-50">
+    <header className="relative select-none flex shadow-sm p-3 items-center justify-between md:px-[200px] py-4 w-full bg-stone-900 text-white z-40">
       <Link
         to="/products"
         className="flex items-center justify-center self-center m-auto text-4xl md:text-2xl font-bold md:hover:text-gray-300"
       >
-        <img src={logo} alt="logo" className="w-[160px] " />
+        <img src={logo} alt="logo" className="w-[160px] h-[89.6px] " />
       </Link>
       {auth && <UserBubble />}
     </header>

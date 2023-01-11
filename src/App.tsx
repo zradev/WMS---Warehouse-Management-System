@@ -11,8 +11,10 @@ import Profile from "./pages/Profile";
 import ProductPage from "./pages/ProductPage";
 import NewProduct from "./pages/NewProduct";
 import EditProduct from "./pages/EditProduct";
+import useScrollToTop from "./hooks/useScrollToTop";
 
 function App() {
+  useScrollToTop();
   return (
     <div className="flex flex-col min-h-screen">
       <AuthProvider>
