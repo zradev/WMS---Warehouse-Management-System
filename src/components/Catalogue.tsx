@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
 import Filter from "./Filter";
 import Product from "./Product";
@@ -18,14 +18,36 @@ const Catalogue = () => {
   const [selectedCategory, setSelectedCategory] = useState(
     sessionStorage.getItem("selectedCategory") || "All"
   );
+  const [selectedSupplier, setSelectedSupplier] = useState(
+    sessionStorage.getItem("selectedSupplier") || "All"
+  );
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
   const [searchParam, setSearchParam] = useState("");
+  const [preventOnStart, setPreventOnStart] = useState(true);
 
   const productsPerPage = 12;
   const lastProductIndex = currentPage * productsPerPage;
   const firstProductIndex = lastProductIndex - productsPerPage;
   const currentProducts = products.slice(firstProductIndex, lastProductIndex);
+
+  const suppliers = useMemo(() => {
+    return [
+      ...new Set<string>(
+        productsData
+          .filter((product) => {
+            if (selectedCategory !== "All") {
+              return (
+                product.category.toLocaleLowerCase() ===
+                selectedCategory.toLocaleLowerCase()
+              );
+            }
+            return product;
+          })
+          .map((product) => product.supplier.name)
+      ),
+    ];
+  }, [productsData, selectedCategory]);
 
   useEffect(() => {
     axios
@@ -35,24 +57,14 @@ const Catalogue = () => {
       })
       .catch((error) => console.log(error))
       .finally(() => {
-        setTimeout(() => setIsLoading(false), 300);
+        setTimeout(() => setIsLoading(false), 1);
       });
   }, []);
 
   useEffect(() => {
-    if (selectedCategory === "All") {
-      setProducts(() =>
-        productsData.filter(
-          (product) =>
-            product._id
-              .toLocaleLowerCase()
-              .includes(searchParam.toLocaleLowerCase()) ||
-            product.name
-              .toLocaleLowerCase()
-              .includes(searchParam.toLocaleLowerCase())
-        )
-      );
-    } else {
+    if (selectedCategory === "All" && selectedSupplier === "All") {
+      setProducts(productsData);
+    } else if (selectedCategory !== "All" && selectedSupplier === "All") {
       setProducts(() =>
         productsData
           .filter(
@@ -70,21 +82,65 @@ const Catalogue = () => {
                 .includes(searchParam.toLocaleLowerCase())
           )
       );
+    } else if (selectedCategory === "All" && selectedSupplier !== "All") {
+      setProducts(() =>
+        productsData
+          .filter(
+            (product) =>
+              product.supplier.name.toLocaleLowerCase() ===
+              selectedSupplier.toLocaleLowerCase()
+          )
+          .filter(
+            (product) =>
+              product._id
+                .toLocaleLowerCase()
+                .includes(searchParam.toLocaleLowerCase()) ||
+              product.name
+                .toLocaleLowerCase()
+                .includes(searchParam.toLocaleLowerCase())
+          )
+      );
+    } else if (selectedCategory !== "All" && selectedSupplier !== "All") {
+      setProducts(() =>
+        productsData
+          .filter(
+            (product) =>
+              product.category.toLocaleLowerCase() ===
+              selectedCategory.toLocaleLowerCase()
+          )
+          .filter(
+            (product) =>
+              product.supplier.name.toLocaleLowerCase() ===
+              selectedSupplier.toLocaleLowerCase()
+          )
+          .filter(
+            (product) =>
+              product._id
+                .toLocaleLowerCase()
+                .includes(searchParam.toLocaleLowerCase()) ||
+              product.name
+                .toLocaleLowerCase()
+                .includes(searchParam.toLocaleLowerCase())
+          )
+      );
     }
-  }, [productsData, selectedCategory, searchParam]);
+  }, [productsData, selectedCategory, searchParam, selectedSupplier]);
 
   return (
     <div className="w-full">
       <div className="flex justify-center items-center w-full h-[50px] my-5">
         <button
-          onClick={() => setIsOpen(true)}
-          className="md:hidden bg-stone-700 text-white font-bold py-3 px-3 rounded-full"
+          onClick={() => {
+            setPreventOnStart(false);
+            setIsOpen(true);
+          }}
+          className="md:hidden bg-stone-800 text-white font-bold py-3 px-3 rounded-full"
         >
           <FaFilter className="text-white w-4 h-4" />
         </button>
         <SearchBar setSearchParam={setSearchParam} />
         <Link to="/new-product">
-          <button className="bg-stone-700 hover:bg-stone-600 text-white py-3 md:py-2 px-3 rounded-full">
+          <button className="bg-stone-800 hover:bg-stone-700 text-white py-3 md:py-2 px-3 rounded-full">
             <BsPlus className="md:hidden" />
             <span className="hidden md:inline"> New Product</span>
           </button>
@@ -93,9 +149,13 @@ const Catalogue = () => {
       <div className=" flex w-full">
         <Filter
           isOpen={isOpen}
+          preventOnStart={preventOnStart}
           setIsOpen={setIsOpen}
           selectedCategory={selectedCategory}
           setSelectedCategory={setSelectedCategory}
+          suppliers={suppliers}
+          selectedSupplier={selectedSupplier}
+          setSelectedSupplier={setSelectedSupplier}
           setCurrentPage={setCurrentPage}
         />
         {isLoading ? (

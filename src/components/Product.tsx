@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { formatCurrency } from "../utils/formatCurrency";
 import { IProduct } from "../utils/interfaces";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 interface IProps {
   product: IProduct;
@@ -20,8 +22,9 @@ const Product = ({ product }: IProps) => {
           <h2 className="text-md mb-2 ml-3">Quantity: {product.quantity}</h2>
         </div>
         <div className="flex self-center w-[25vh] h-[25vh] md:w-[15vw] md:h-[15vw]">
-          <img
+          <LazyLoadImage
             src={product.images[0]}
+            effect="blur"
             alt="car"
             className="w-auto h-auto object-contain rounded"
           />

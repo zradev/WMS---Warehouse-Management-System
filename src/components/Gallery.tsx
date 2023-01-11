@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { FaArrowAltCircleLeft, FaArrowAltCircleRight } from "react-icons/fa";
 import { useScrollLock } from "../hooks/useScrollLock";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 interface IProps {
   images: string[];
@@ -50,23 +52,24 @@ const Gallery = ({ images }: IProps) => {
             <button
               onClick={(e) => {
                 e.stopPropagation();
+                e.preventDefault();
                 setOpenImgIndex(() => getPrevImgIndex());
               }}
               className="flex py-10 text-4xl text-white bg-transparent self-center border-none "
             >
               <FaArrowAltCircleLeft />
             </button>
-            <div className="w-[50vw] h-[60vh]">
-              <img
-                src={images[openImgIndex]}
-                alt="open"
-                onClick={(e) => e.stopPropagation()}
-                className="w-full h-full object-contain"
-              />
-            </div>
+            <LazyLoadImage
+              src={images[openImgIndex]}
+              alt="open"
+              effect="blur"
+              onClick={(e) => e.stopPropagation()}
+              className="w-[50vw] h-[60vh] object-contain"
+            />
             <button
               onClick={(e) => {
                 e.stopPropagation();
+                e.preventDefault();
                 setOpenImgIndex(() => getNextImgIndex());
               }}
               className="flex py-10 text-4xl text-white bg-transparent self-center border-none "
@@ -76,27 +79,29 @@ const Gallery = ({ images }: IProps) => {
           </div>
         </div>
       )}
-      <div className="flex flex-col-reverse md:flex-row items-center space-y-3 md:space-x-10 md:space-y-0 mx-10">
+      <div className="flex flex-col-reverse md:flex-row items-center md:space-x-10 mx-10">
         <div className="flex flex-row md:flex-col space-x-5 md:space-y-5 md:space-x-0 overflow-x-auto md:overflow-y-auto">
           {images.map((image: string, index: number) => (
-            <img
+            <LazyLoadImage
               src={image}
-              alt=""
+              alt="option"
+              effect="blur"
               onClick={() => setActiveImgIndex(() => index)}
               className={`${
                 activeImgIndex === index
                   ? "border-b-2 border-black pb-1.5"
                   : "border-b-2 border-transparent hover:border-gray-500 pb-1.5"
-              } w-[20vw] md:w-[10vw] lg:w-[6vw] select-none object-contain`}
+              } w-[20vw] md:w-[10vw] lg:h-[6vw] h-[20vw] md:h-[10vw] lg:h-[6vw] select-none object-contain`}
               key={index}
             />
           ))}
         </div>
-        <img
+        <LazyLoadImage
           src={images[activeImgIndex]}
           alt="active"
+          effect="blur"
           onClick={() => handleOnClick()}
-          className="w-[80vw] md:w-[30vw] select-none pointer-events-none md:pointer-events-auto object-contain"
+          className="w-[80vw] md:w-[30vw] h-[80vw] md:h-[30vw] mb-5 md:mb-0 select-none pointer-events-none md:pointer-events-auto object-contain"
         />
       </div>
     </>

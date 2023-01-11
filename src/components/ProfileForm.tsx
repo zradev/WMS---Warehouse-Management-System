@@ -8,32 +8,6 @@ import "react-toastify/dist/ReactToastify.css";
 const ProfileForm = () => {
   const { auth, updateUser } = useContext(AuthContext);
 
-  const [message, setMessage] = useState("");
-
-  const notify = () => {
-    message.includes("Success")
-      ? toast(message, {
-          position: "top-center",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        })
-      : toast("Fail", {
-          position: "top-center",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
-  };
-
   const formik = useFormik({
     initialValues: {
       username: auth!.username,
@@ -41,8 +15,10 @@ const ProfileForm = () => {
       email: auth!.email,
     },
     onSubmit: async (values) => {
-      updateUser(auth!._id, values).then((res) => {
-        setMessage(() => res);
+      toast.promise(updateUser(auth!._id, values), {
+        pending: "Loading...",
+        success: "Profile Updated Successfully.",
+        error: "Profile with this username or email already exists!",
       });
     },
   });
@@ -101,12 +77,11 @@ const ProfileForm = () => {
         <div className="flex justify-center items-center">
           <button
             type="submit"
-            onClick={notify}
-            className="bg-stone-700 hover:bg-stone-600 text-white py-3 md:py-2 px-3 rounded-full my-3"
+            className="bg-stone-800 hover:bg-stone-700 text-white py-3 md:py-2 px-3 rounded-full my-3"
           >
             Update
           </button>
-          <ToastContainer />
+          <ToastContainer position="top-center" theme="colored" />
         </div>
       </form>
     </>

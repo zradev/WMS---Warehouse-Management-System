@@ -52,21 +52,27 @@ const UserBubble = () => {
             return !prev;
           });
         }}
-        className={`flex items-center justify-center relative bg-gray-200 z-50 w-10 h-10 m-auto text-xl rounded-full hover:border`}
+        className={`flex items-center justify-center relative bg-[#CDCBCA] z-40 w-[45px] h-[45px] border m-auto text-2xl pt-1.5 rounded-full border border-gray-700`}
       >
-        <p className="w-min h-min">{user?.username[0].toLocaleUpperCase()}</p>
+        <p className="font-semibold">{user?.username[0].toUpperCase()}</p>
       </button>
       <div
-        className={`fixed md:absolute top-0 w-full h-full pt-[20vh] px-9 md:w-max md:static md:h-auto md:p-5 md:mt-2 bg-white ${
+        className={`fixed md:absolute top-0 w-full h-full pt-[30vh] my-auto px-9 md:w-max md:static md:h-auto md:p-5 md:mt-2 bg-white ${
           isOpen
-            ? " right-[-100%] md:left-[-150%] md:top-[100%] slide-in-right md:animate:none md:animate-none md:rounded-lg md:border"
+            ? " right-[-100%] md:left-[-150%] md:top-[100%] slide-in-right md:animate:none md:animate-none md:rounded-lg md:border md:ml-auto"
             : preventAnimationOnLoad
             ? " right-[-100%] md:hidden"
             : " right-0  slide-out-right md:hidden"
         }`}
       >
         {isOpen && (
-          <ul className="flex flex-col items-center space-y-10 md:space-y-1 md:gap-4 text-2xl md:text-xl mt-10 md:mt-0">
+          <ul className="flex flex-col items-center space-y-10 md:space-y-4 text-3xl md:text-xl md:mt-0">
+            <li
+              className="hover:text-gray-600"
+              onClick={() => setIsOpen(false)}
+            >
+              <Link to="/products">Products</Link>
+            </li>
             <li
               className="hover:text-gray-600"
               onClick={() => setIsOpen(false)}

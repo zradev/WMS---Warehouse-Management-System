@@ -60,7 +60,7 @@ export const AuthProvider = ({ children }: IAuthProvider) => {
       setAuth(jwt_decode(jwt));
       return "Updated Successfully!";
     } catch (error) {
-      return axiosErrorHandler(error);
+      throw Error(axiosErrorHandler(error));
     }
   };
 

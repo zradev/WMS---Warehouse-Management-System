@@ -70,12 +70,12 @@ const NewProductForm = () => {
     });
   };
 
-  const decreaseCount = (e: any) => {
+  const decreaseQuantity = (e: any) => {
     e.preventDefault();
     quantity > 0 && setQuantity((count) => count - 1);
   };
 
-  const increaseCount = (e: any) => {
+  const increaseQuantity = (e: any) => {
     e.preventDefault();
     setQuantity((count) => count + 1);
   };
@@ -136,7 +136,9 @@ const NewProductForm = () => {
         className="flex flex-col  w-full p-3 lg:px-[250px] md:px-[200px] my-2"
         autoComplete="off"
       >
-        <h2 className="text-2xl text-center border-b mb-6">Add New Product</h2>
+        <h2 className="text-2xl text-center border-b py-2 mb-4">
+          Add New Product
+        </h2>
         {error && (
           <div className="text-center text-2xl text-rose-400">{error}</div>
         )}
@@ -229,15 +231,15 @@ const NewProductForm = () => {
           </label>
           <div className="flex gap-5 text-2xl justify-center items-center p-1 px-2 w-[45vw] md:w-[20vw] select-none">
             <button
-              onClick={decreaseCount}
-              className="flex justify-center items-center text-white w-5 h-5 bg-stone-700 rounded-full hover:scale-110"
+              onClick={decreaseQuantity}
+              className="flex justify-center items-center text-white w-5 h-5 bg-stone-800 rounded-full hover:scale-110"
             >
               -
             </button>
             <p>{quantity}</p>
             <button
-              onClick={increaseCount}
-              className="flex justify-center items-center text-white w-5 h-5 bg-stone-700 rounded-full hover:scale-110"
+              onClick={increaseQuantity}
+              className="flex justify-center items-center text-white w-5 h-5 bg-stone-800 rounded-full hover:scale-110"
             >
               +
             </button>
@@ -247,7 +249,7 @@ const NewProductForm = () => {
           {progress > 0 && <p>Creating: {progress}%</p>}
           <input
             type="submit"
-            className="bg-stone-700 hover:bg-stone-600 text-xl text-white py-3 md:py-2 px-3 rounded-full"
+            className="bg-stone-800 hover:bg-stone-700 text-xl text-white py-3 md:py-2 px-3 rounded-full"
             value={"Create"}
           />
         </div>

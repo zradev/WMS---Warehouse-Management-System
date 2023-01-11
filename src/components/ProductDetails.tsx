@@ -55,7 +55,7 @@ const ProductDetails = ({ product }: IProps) => {
                 </button>
                 <button
                   onClick={handleDelete}
-                  className="bg-stone-700 hover:bg-stone-600 text-white text-start w-fit my-10 border border-gray-400 p-1 px-4 rounded-full "
+                  className="bg-stone-800 hover:bg-stone-700 text-white text-start w-fit my-10 border border-gray-400 p-1 px-4 rounded-full "
                 >
                   Confirm
                 </button>
@@ -108,13 +108,13 @@ const ProductDetails = ({ product }: IProps) => {
             <p className="md:mx-10">{product?.description}</p>
           </div>
           <div className="self-center space-x-10">
-            <Link to={`/cars/edit/${product?._id}`}>
-              <button className="bg-stone-700 hover:bg-stone-600 text-white py-3 md:py-2 px-6 rounded-full my-3">
+            <Link to={`/products/edit/${product?._id}`}>
+              <button className="bg-stone-800 hover:bg-stone-700 text-white py-3 md:py-2 px-6 rounded-full my-3">
                 EDIT
               </button>
             </Link>
             <button
-              className="bg-stone-700 hover:bg-stone-600 text-white py-3 md:py-2 px-6 rounded-full my-3"
+              className="bg-stone-800 hover:bg-stone-700 text-white py-3 md:py-2 px-6 rounded-full my-3"
               onClick={() => setModal(true)}
             >
               DELETE

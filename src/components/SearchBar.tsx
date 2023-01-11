@@ -19,7 +19,7 @@ const SearchBar = ({ setSearchParam }: IProps) => {
           placeholder="Search..."
         />
         <button
-          className="px-4 text-white bg-stone-700 hover:bg-stone-600 rounded-full "
+          className="px-4 text-white bg-stone-800 hover:bg-stone-700 rounded-full "
           onClick={() => setSearchParam(param)}
         >
           <svg

@@ -10,6 +10,7 @@ import Products from "./pages/Products";
 import Profile from "./pages/Profile";
 import ProductPage from "./pages/ProductPage";
 import NewProduct from "./pages/NewProduct";
+import EditProduct from "./pages/EditProduct";
 
 function App() {
   return (
@@ -31,6 +32,10 @@ function App() {
           <Route
             path="/products/:id"
             element={<AuthRoute component={ProductPage} />}
+          />
+          <Route
+            path="/products/edit/:id"
+            element={<AuthRoute component={EditProduct} />}
           />
           <Route path="/*" element={<AuthRoute component={Products} />} />
         </Routes>

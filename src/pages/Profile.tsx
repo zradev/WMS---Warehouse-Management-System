@@ -16,7 +16,7 @@ const Profile = () => {
   };
 
   return (
-    <div>
+    <div className="flex flex-col h-[70vh]">
       <ProfileForm />
       {isOpen && (
         <div
@@ -43,7 +43,7 @@ const Profile = () => {
                 </button>
                 <button
                   onClick={handleDelete}
-                  className="text-white bg-stone-700 hover:bg-stone-600 w-fit my-10 p-1 px-4 rounded-full"
+                  className="text-white bg-stone-800 hover:bg-stone-700 w-fit my-10 p-1 px-4 rounded-full"
                 >
                   Confirm
                 </button>
@@ -52,19 +52,17 @@ const Profile = () => {
           </div>
         </div>
       )}
-      <div className="flex flex-col items-center w-full p-3 lg:px-[250px] md:px-[200px] my-[50px]">
-        <div className="text-center">
-          <h2>
-            This is permanent. <br />
-            When you delete your account, you won't be able to retrieve it.
-          </h2>
-          <button
-            className="bg-stone-700 hover:bg-stone-600 text-white py-3 md:py-2 px-3 rounded-full my-3"
-            onClick={() => setIsOpen(true)}
-          >
-            Delete Account
-          </button>
-        </div>
+      <div className="flex flex-col text-center items-center w-full p-3 my-auto lg:px-[250px] md:px-[200px]">
+        <h2>
+          This is permanent. <br />
+          When you delete your account, you won't be able to retrieve it.
+        </h2>
+        <button
+          className="bg-stone-800 hover:bg-stone-700 text-white py-3 md:py-2 px-3 rounded-full my-3"
+          onClick={() => setIsOpen(true)}
+        >
+          Delete Account
+        </button>
       </div>
     </div>
   );
